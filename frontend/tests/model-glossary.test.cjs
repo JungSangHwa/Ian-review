@@ -15,6 +15,90 @@ function setup(source = 'Mira entered Moonspire.') {
   return { id, read: () => state, commit: async recipe => { const draft = structuredClone(state); recipe(draft); state = validateWorkspace(draft); return true } }
 }
 
+test('a real alias cannot justify a canonical name invented outside the source', async () => {
+  const db = setup(), state = db.read()
+  startAITranslation(state, db.id, 'empty')
+  const batch = prepareAIBatch(state, db.id)
+  const invented = { source: 'Princess Mirabelle', target: '미라', category: 'character', aliases: ['Mira'], note: '', evidence: { segmentId: batch.segments[0].id, quote: 'Mira' } }
+  assert.throws(() => parseAIBatchResult(JSON.stringify({ segments: [{ id: batch.segments[0].id, target: '미라가 들어갔다.' }], terms: [invented] }), batch), /기준 원어/)
+  await assert.rejects(processProjectGlossary({ project: 'Alpha', read: db.read, commit: db.commit, apiKey: '', signal: new AbortController().signal, transport: async (_config, _system, prompt) => {
+    const sample = JSON.parse(prompt).samples[0]
+    return JSON.stringify({ terms: [{ ...invented, evidence: { ...invented.evidence, documentId: sample.documentId, segmentId: sample.segmentId } }] })
+  } }), /기준 원어/)
+  assert.equal(db.read().glossary.length, 0)
+})
+
+test('large unrelated glossary notes do not crowd out terms needed by the current source', async () => {
+  const db = setup(), state = db.read()
+  for (let index = 0; index < 100; index++) state.glossary.push({ id: uid(), project: 'Alpha', source: 'Unrelated ' + index, target: '다른 용어 ' + index, sourceLang: 'en', targetLang: 'ko', severity: 'warning', note: '설정 메모 '.repeat(100) })
+  state.glossary.push({ id: uid(), project: 'Alpha', source: 'Mira', target: '미라', sourceLang: 'en', targetLang: 'ko', severity: 'warning', note: '미라의 말투를 유지합니다.', aliases: ['MIRA'], variants: ['미라나'] })
+  startAITranslation(state, db.id, 'empty')
+  const batch = prepareAIBatch(state, db.id), entries = JSON.parse(batch.prompt).glossaryDocument.entries
+  assert.equal(entries[0].source, 'Mira')
+  assert.equal(entries[0].note, '미라의 말투를 유지합니다.')
+  assert.deepEqual(entries[0].avoid, ['미라나'])
+  assert.ok(Buffer.byteLength(JSON.stringify(entries)) <= 20000)
+  await processProjectGlossary({ project: 'Alpha', read: db.read, commit: db.commit, apiKey: '', signal: new AbortController().signal, transport: async (_config, _system, prompt) => {
+    const known = JSON.parse(prompt).existingGlossary
+    assert.equal(known[0].source, 'Mira')
+    assert.ok(Buffer.byteLength(JSON.stringify(known)) <= 20000)
+    return '{"terms":[]}'
+  } })
+  assert.equal(db.read().glossary.length, 101)
+})
+
+test('required glossary notes are never silently trimmed to fit a request', () => {
+  const { modelGlossaryContext } = require('../src/lib/modelGlossary.ts')
+  const terms = Array.from({ length: 10 }, (_, index) => ({ id: uid(), source: 'Name' + index, target: '인물' + index, sourceLang: 'en', targetLang: 'ko', severity: 'warning', note: '가'.repeat(1000) }))
+  const before = structuredClone(terms)
+  assert.throws(() => modelGlossaryContext(terms, [terms.map(term => term.source).join(', ')]), /필요한 용어.*한도/)
+  assert.deepEqual(terms, before)
+})
+
+test('second-pass review receives actual numeric, placeholder and canon findings from the draft', async () => {
+  const db = setup('Mira has 3 keys for {name}.'), state = db.read(), prior = global.fetch
+  state.glossary.push({ id: uid(), project: 'Alpha', source: 'Mira', target: '미라', sourceLang: 'en', targetLang: 'ko', severity: 'warning' })
+  startAITranslation(state, db.id, 'empty')
+  const batch = prepareAIBatch(state, db.id)
+  let calls = 0
+  global.fetch = async (_url, options) => {
+    const input = JSON.parse(JSON.parse(options.body).prompt)
+    if (++calls === 2) {
+      assert.deepEqual(input.ruleFindings.map(issue => issue.type).sort(), ['변수 확인', '숫자 확인', '용어 일관성'].sort())
+      assert.ok(input.ruleFindings.every(issue => issue.segmentId === batch.segments[0].id))
+      assert.match(input.ruleFindings.find(issue => issue.type === '숫자 확인').reason, /3.*2/)
+      assert.equal(state.translations[0].segments[0].targetText, '')
+    }
+    return Response.json({ text: JSON.stringify({ segments: [{ id: batch.segments[0].id, target: calls === 1 ? '그녀에게 열쇠 2개가 있다.' : '미라에게 {name}의 열쇠 3개가 있다.' }], terms: [] }) })
+  }
+  try { applyAIBatch(state, batch, await requestAI(batch, '')); assert.equal(state.translations[0].issues.filter(issue => issue.status === 'open').length, 0) } finally { global.fetch = prior }
+})
+
+test('editing canon during glossary inference discards the stale batch and preserves the edit', async () => {
+  const db = setup(), state = db.read(), termId = uid()
+  state.glossary.push({ id: termId, project: 'Alpha', source: 'Moonspire', target: '월광첨탑', sourceLang: 'en', targetLang: 'ko', severity: 'warning' })
+  let calls = 0
+  await assert.rejects(processProjectGlossary({ project: 'Alpha', read: db.read, commit: db.commit, apiKey: '', signal: new AbortController().signal, transport: async (_config, _system, prompt) => {
+    if (++calls === 2) await db.commit(draft => { draft.glossary.find(term => term.id === termId).target = '달빛 탑' })
+    const sample = JSON.parse(prompt).samples[0]
+    return JSON.stringify({ terms: [{ source: 'Mira', target: '미라', category: 'character', aliases: [], note: '', evidence: { documentId: sample.documentId, segmentId: sample.segmentId, quote: 'Mira' } }] })
+  } }), /용어집 기준이 바뀌었습니다/)
+  assert.equal(db.read().glossary.length, 1)
+  assert.equal(db.read().glossary[0].target, '달빛 탑')
+  assert.equal(projectGlossaryProgress(db.read(), 'Alpha').completed, 0)
+  assert.equal(projectGlossaryProgress(db.read(), 'Alpha').status, 'failed')
+})
+
+test('canonical names can use alias quotes when both spellings occur in supplied source', async () => {
+  const db = setup('Mira greeted Mirabelle.')
+  await processProjectGlossary({ project: 'Alpha', read: db.read, commit: db.commit, apiKey: '', signal: new AbortController().signal, transport: async (_config, _system, prompt) => {
+    const sample = JSON.parse(prompt).samples[0]
+    return JSON.stringify({ terms: [{ source: 'Mirabelle', target: '미라벨', category: 'character', aliases: ['Mira'], note: '두 표기 모두 원문에 존재한다.', evidence: { documentId: sample.documentId, segmentId: sample.segmentId, quote: 'Mira' } }] })
+  } })
+  assert.equal(db.read().glossary[0].source, 'Mirabelle')
+  assert.deepEqual(db.read().glossary[0].aliases, ['Mira'])
+})
+
 test('project glossary repairs unsupported aliases and wrong evidence before saving either pass', async () => {
   const db = setup(), seen = [], attempts = { extract: 0, verify: 0 }
   await processProjectGlossary({ project: 'Alpha', read: db.read, commit: db.commit, apiKey: '', signal: new AbortController().signal, transport: async (_config, system, prompt) => {

@@ -8,7 +8,8 @@
     "start:headless": "node start.mjs --no-open",
     "dev": "node frontend/node_modules/vite/bin/vite.js frontend --config frontend/vite.config.ts",
     "build": "npm --prefix frontend run build && node scripts/prepare-hosting.mjs",
-    "test": "npm --prefix frontend test"
+    "test": "npm --prefix frontend test",
+    "test:ollama": "node --require ./frontend/scripts/register-ts.cjs scripts/smoke-ollama.cjs"
   },
   "engines": {
     "node": ">=22.12.0"

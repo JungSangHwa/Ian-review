@@ -1,0 +1,73 @@
+{
+  "model": "gemma4:12b",
+  "ollamaVersion": "0.35.1",
+  "requests": 7,
+  "elapsedSeconds": 30,
+  "originalTermsUnchanged": true,
+  "overflowRejected": "원문·용어집·검증 결과가 모델의 문맥 한도를 넘었습니다. 원문 묶음을 2,000자로 줄이거나 용어 메모를 줄인 뒤 재개해 주세요.",
+  "semanticQualityCertified": false,
+  "chapters": [
+    {
+      "title": "실제 추론 점검 1",
+      "completed": 2,
+      "total": 2,
+      "openIssues": [],
+      "paragraphs": [
+        {
+          "sourceText": "Nara laid three silver keys on the workbench. Jun watched the keys without touching them.",
+          "targetText": "나라는 작업대에 은 열쇠 세 개를 올려놓았다. 준은 손을 대지 않은 채 열쇠들을 지켜보았다.",
+          "reviewed": true
+        },
+        {
+          "sourceText": "\"Please let me help,\" Jun said to Nara. \"Then hold the lamp steady,\" Nara told him.",
+          "targetText": "\"제가 도와드릴게요.\" 준이 나라에게 말했다. \"그럼 램프를 똑바로 들고 있어.\" 나라가 그에게 말했다.",
+          "reviewed": true
+        }
+      ]
+    },
+    {
+      "title": "실제 추론 점검 2",
+      "completed": 2,
+      "total": 2,
+      "openIssues": [],
+      "paragraphs": [
+        {
+          "sourceText": "Jun brought the three silver keys back to Nara. The lamp was still burning above her workbench.",
+          "targetText": "준은 세 개의 은 열쇠를 가지고 나라에게 돌아왔다. 램프는 여전히 그녀의 작업대 위에서 타오르고 있었다.",
+          "reviewed": true
+        },
+        {
+          "sourceText": "\"Are all the keys here?\" Nara asked Jun. \"Yes. I kept them safe,\" he answered.",
+          "targetText": "\"모든 열쇠가 여기 있나?\" 나라가 준에게 물었다. \"네. 안전하게 보관했습니다.\" 그가 대답했다.",
+          "reviewed": true
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "source": "Jun",
+      "target": "준",
+      "category": "character",
+      "aliases": [],
+      "note": "",
+      "quote": "Jun brought the three silver keys back to Nara."
+    },
+    {
+      "source": "Nara",
+      "target": "나라",
+      "category": "character",
+      "aliases": [],
+      "note": "",
+      "quote": "\"Are all the keys here?\" Nara asked Jun."
+    },
+    {
+      "source": "silver keys",
+      "target": "은 열쇠",
+      "category": "term",
+      "aliases": [],
+      "note": "",
+      "quote": "Jun brought the three silver keys back to Nara."
+    }
+  ]
+}

@@ -52,4 +52,6 @@ python frontend/tests/e2e.py
 
 로컬 개발 서버는 `npm run dev`로 실행할 수 있습니다. `npm run build`는 타입 검사와 배포용 번들, 정적 호스팅 패키지를 만듭니다. `frontend/dist`가 포함된 패키지는 일반 사용에 `npm install`이 필요하지 않습니다. 현재 검증 결과는 [TEST_REPORT.md](docs/TEST_REPORT.md)에 기록합니다.
 
+실제 모델 검증은 앱과 Ollama를 실행한 상태에서 `npm run test:ollama -- gemma4:12b`로 수행합니다. 설치된 다른 모델 ID도 지정할 수 있습니다. 별도 메모리 작업 공간에서 긴 용어집과 짧은 소설 두 회차를 처리하고, 문맥 초과 요청 차단을 확인합니다. 기존 브라우저 프로젝트는 변경하지 않습니다. 결과는 `output/maintenance/real-ollama.json`에 저장합니다. 모델 출력에 규칙 이슈가 남으면 실패로 보고하며 의미 정확도를 인증하지 않습니다.
+
 이 앱은 개인 로컬 작업용입니다. 로그인, 클라우드 동기화, 팀 권한, 암호화, DOCX/PDF 직접 파싱은 제공하지 않습니다. 규칙 검사와 모델 재검증은 번역의 의미 정확도를 보증하지 않습니다.

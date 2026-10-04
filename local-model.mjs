@@ -42,7 +42,8 @@ async function ollama(path, options = {}, timeout = 30000, fetcher = fetch, sign
   const upstreamSignal = signal ? AbortSignal.any([signal, AbortSignal.timeout(timeout)]) : AbortSignal.timeout(timeout)
   const response = await fetcher(`${OLLAMA}${path}`, { ...options, redirect: 'error', signal: upstreamSignal })
   if (!response.ok) {
-    await response.body?.cancel()
+    const error = (await response.text()).slice(0, 2000)
+    if (/context|input length|prompt.*(?:long|exceed)/i.test(error)) throw new Error('원문·용어집·검증 결과가 모델의 문맥 한도를 넘었습니다. 원문 묶음을 2,000자로 줄이거나 용어 메모를 줄인 뒤 재개해 주세요.')
     if (response.status === 404) throw new Error('Ollama에서 모델을 찾지 못했습니다. 먼저 모델을 내려받아 주세요.')
     throw new Error('Ollama가 요청을 처리하지 못했습니다. 모델과 실행 상태를 확인해 주세요.')
   }
@@ -70,11 +71,12 @@ export async function localChat(input, test = false, fetcher = fetch, signal) {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     // Source, glossary and the second-pass candidate must fit together. The
     // common 4k Ollama default can discard the source while generating a reply.
-    body: JSON.stringify({ model: input.model, stream: false, options: { temperature: 0, num_ctx: 16384 }, ...(thinking ? { think: false } : {}), ...(test ? {} : { format: modelOutputFormat(input.prompt) }), messages: test
+    body: JSON.stringify({ model: input.model, stream: false, truncate: false, shift: false, options: { temperature: 0, num_ctx: 16384, num_predict: test ? 32 : 8192 }, ...(thinking ? { think: false } : {}), ...(test ? {} : { format: modelOutputFormat(input.prompt) }), messages: test
       ? [{ role: 'user', content: 'Respond with exactly PONG.' }]
       : [{ role: 'system', content: input.system }, { role: 'user', content: input.prompt }] })
   }, 300000, fetcher, signal)
   const content = data?.message?.content
+  if (data?.done_reason === 'length') throw new Error('모델이 출력 한도에 도달했습니다. 이 응답은 저장하지 않았습니다. 원문 묶음을 줄인 뒤 재개해 주세요.')
   if (data?.done !== true || typeof content !== 'string' || !content.trim() || content.length > 200000) throw new Error('Ollama가 완결된 응답을 반환하지 않았습니다. 요청 크기를 줄이거나 다른 모델을 선택하세요.')
   if (test && !/\bpong\b/i.test(content)) throw new Error('연결은 되었지만 테스트 응답을 확인하지 못했습니다.')
   return content

@@ -262,6 +262,34 @@ class BrowserTests(unittest.TestCase):
         p.get_by_role('button', name=re.compile('수정 이력')).click()
         expect(p.get_by_role('dialog')).to_contain_text('모델이 저장한 번역')
 
+    def test_context_error_preserves_saved_translation_and_resumes_after_reload(self):
+        p = self.page
+        self.create_project('Alpha')
+        review_url = self.create_document('Alpha', target='기존에 저장한 번역')
+        self.mock_model()
+        self.save_model('Alpha')
+        error_message = '원문·용어집·검증 결과가 모델의 문맥 한도를 넘었습니다. 원문 묶음을 2,000자로 줄이거나 용어 메모를 줄인 뒤 재개해 주세요.'
+        failed = {'enabled': True}
+        def fail_translation(route):
+            if failed['enabled'] and route.request.post_data_json.get('system', '').startswith('You translate'):
+                route.fulfill(status=502, json={'error': error_message})
+            else:
+                route.fallback()
+        p.route('**/api/model', fail_translation)
+        p.goto(review_url)
+        p.get_by_role('button', name='용어집 기반 모델 번역').click()
+        p.get_by_role('dialog').get_by_role('button', name=re.compile('전체 .*구간 다시 번역')).click()
+        expect(p.locator('.sidebar-task')).to_contain_text(error_message)
+        expect(p.locator('.sidebar-task')).to_contain_text('번역 저장 0/1구간')
+        expect(p.get_by_role('textbox', name='번역문 편집')).to_have_value('기존에 저장한 번역')
+        p.reload()
+        expect(p.get_by_role('textbox', name='번역문 편집')).to_have_value('기존에 저장한 번역')
+        expect(p.locator('.sidebar-task')).to_contain_text('오류 · 재개 가능')
+        failed['enabled'] = False
+        p.locator('.sidebar-task').get_by_role('button', name='재개', exact=True).click()
+        expect(p.get_by_role('textbox', name='번역문 편집')).to_have_value('모델이 저장한 번역')
+        expect(p.get_by_text('번역 완료', exact=True)).to_be_visible()
+
     def test_job_keeps_running_after_page_move_and_can_pause_resume(self):
         p = self.page
         self.create_project('Alpha'); self.create_document('Alpha')

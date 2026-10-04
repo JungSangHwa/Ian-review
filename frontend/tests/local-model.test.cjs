@@ -4,6 +4,24 @@ const { Readable } = require('node:stream')
 const { EventEmitter } = require('node:events')
 const localModule = import('../../local-model.mjs')
 
+test('an output limit is not accepted as a completed model response even with valid JSON', async () => {
+  const { localChat } = await localModule
+  await assert.rejects(localChat({ model: 'qwen3:8b', system: 'Translate', prompt: 'Hello' }, false, async url => {
+    if (url.endsWith('/api/tags')) return Response.json({ models: [{ name: 'qwen3:8b' }] })
+    if (url.endsWith('/api/show')) return Response.json({ capabilities: ['completion'] })
+    return Response.json({ done: true, done_reason: 'length', message: { content: '{"segments":[],"terms":[]}' } })
+  }), /출력 한도/)
+})
+
+test('context overflow reports a recoverable request-size error instead of connection failure', async () => {
+  const { localChat } = await localModule
+  await assert.rejects(localChat({ model: 'qwen3:8b', system: 'Translate', prompt: 'Hello' }, false, async url => {
+    if (url.endsWith('/api/tags')) return Response.json({ models: [{ name: 'qwen3:8b' }] })
+    if (url.endsWith('/api/show')) return Response.json({ capabilities: ['completion'] })
+    return Response.json({ error: 'input length exceeds maximum context length' }, { status: 400 })
+  }), /문맥 한도.*2,000/)
+})
+
 test('local models come from the fixed loopback Ollama endpoint', async () => {
   const { localModels } = await localModule
   const models = await localModels(async (url, options) => {
@@ -25,7 +43,9 @@ test('local translation sends JSON chat without credentials or remote URLs', asy
     assert.equal(body.format, 'json')
     assert.equal(body.stream, false)
     assert.equal(Object.hasOwn(body, 'think'), false)
-    assert.deepEqual(body.options, { temperature: 0, num_ctx: 16384 })
+    assert.deepEqual(body.options, { temperature: 0, num_ctx: 16384, num_predict: 8192 })
+    assert.equal(body.truncate, false)
+    assert.equal(body.shift, false)
     assert.deepEqual(body.messages, [{ role: 'system', content: 'Translate' }, { role: 'user', content: 'Hello' }])
     return Response.json({ done: true, message: { content: '{"segments":[],"terms":[]}' } })
   })
@@ -115,6 +135,9 @@ test('thinking models return direct structured output in both inference and conn
       const body = JSON.parse(options.body)
       assert.equal(body.think, false)
       assert.equal(body.options.num_ctx, 16384)
+      assert.equal(body.options.num_predict, testConnection ? 32 : 8192)
+      assert.equal(body.truncate, false)
+      assert.equal(body.shift, false)
       return Response.json({ done: true, message: { content: testConnection ? 'PONG' : '{}' } })
     })
   }

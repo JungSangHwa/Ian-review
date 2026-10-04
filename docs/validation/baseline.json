@@ -1,0 +1,389 @@
+{
+  "phase": "before fixes",
+  "rows": [
+    {
+      "id": "C01",
+      "purpose": "용어집 적용",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C02",
+      "purpose": "천 단위 쉼표 정규화",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C03",
+      "purpose": "중괄호 변수 보존",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C04",
+      "purpose": "전각 숫자 정규화",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C05",
+      "purpose": "CSV 쉼표·따옴표·셀 내부 줄바꿈",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C06",
+      "purpose": "이모지와 유니코드",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C07",
+      "purpose": "마크업을 포함한 일반 텍스트",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C08",
+      "purpose": "부호 있는 숫자 보존",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C09",
+      "purpose": "순서 지정 printf 변수",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C10",
+      "purpose": "짧은 고유명사 유지",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C11",
+      "purpose": "한 문장의 복수 용어",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "C12",
+      "purpose": "금지 의미 보존",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E01",
+      "purpose": "빈 번역문",
+      "expected": [
+        "번역 누락"
+      ],
+      "actual": [
+        "번역 누락"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E02",
+      "purpose": "수량 변경",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [
+        "숫자 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E03",
+      "purpose": "중복 숫자 중 하나 누락",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [
+        "숫자 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E04",
+      "purpose": "변수 누락",
+      "expected": [
+        "변수 확인"
+      ],
+      "actual": [
+        "변수 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E05",
+      "purpose": "템플릿 변수 이름 변경",
+      "expected": [
+        "변수 확인"
+      ],
+      "actual": [
+        "변수 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E06",
+      "purpose": "중복 변수 중 하나 누락",
+      "expected": [
+        "변수 확인"
+      ],
+      "actual": [
+        "변수 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E07",
+      "purpose": "영문 전체 미번역",
+      "expected": [
+        "미번역 의심"
+      ],
+      "actual": [
+        "미번역 의심"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E08",
+      "purpose": "앞뒤·중복 공백",
+      "expected": [
+        "공백 정리"
+      ],
+      "actual": [
+        "공백 정리"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E09",
+      "purpose": "권장 용어 미사용",
+      "expected": [
+        "용어 일관성"
+      ],
+      "actual": [
+        "용어 일관성"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E10",
+      "purpose": "숫자·변수·용어 복합 오류",
+      "expected": [
+        "변수 확인",
+        "숫자 확인",
+        "용어 일관성"
+      ],
+      "actual": [
+        "변수 확인",
+        "숫자 확인",
+        "용어 일관성"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E11",
+      "purpose": "음수 부호 누락",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [],
+      "passed": false,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E12",
+      "purpose": "폭 지정 printf 변수 타입 변경",
+      "expected": [
+        "변수 확인"
+      ],
+      "actual": [],
+      "passed": false,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E13",
+      "purpose": "소수 정밀도 printf 변수 타입 변경",
+      "expected": [
+        "변수 확인"
+      ],
+      "actual": [],
+      "passed": false,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "E14",
+      "purpose": "할인율 변경",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [
+        "숫자 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "M01",
+      "purpose": "규칙으로 탐지할 수 없는 금지 의미 반전",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": true,
+      "intentionalDifference": false
+    },
+    {
+      "id": "M02",
+      "purpose": "전송 범위 의미 왜곡",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": true,
+      "intentionalDifference": false
+    },
+    {
+      "id": "M03",
+      "purpose": "동작 의미 오역",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": true,
+      "intentionalDifference": false
+    },
+    {
+      "id": "M04",
+      "purpose": "숫자는 맞지만 조건 누락",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": true,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R01",
+      "purpose": "한영 수량 보존",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R02",
+      "purpose": "한영 변수 보존",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R03",
+      "purpose": "언어 방향별 용어집",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R04",
+      "purpose": "한영 음수 부호 누락",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [],
+      "passed": false,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R05",
+      "purpose": "고객 지원 문체",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": false
+    },
+    {
+      "id": "R06",
+      "purpose": "정당한 단위 환산도 경고하는 한계 확인",
+      "expected": [
+        "숫자 확인"
+      ],
+      "actual": [
+        "숫자 확인"
+      ],
+      "passed": true,
+      "manualReviewRequired": false,
+      "intentionalDifference": true
+    }
+  ]
+}

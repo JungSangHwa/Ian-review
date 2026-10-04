@@ -1,0 +1,22 @@
+Release package smoke test
+==========================
+Archive extracted to a fresh directory whose name contains spaces.
+No node_modules directory; no dependency installation.
+PASS: Linux shell launcher started the release using only Node.js.
+PASS: index.html HTTP 200.
+PASS: /assets/app-627432eee00b.css (82608 bytes); immutable cache header.
+PASS: /assets/app-d9669395e724.js (1413041 bytes); immutable cache header.
+PASS: deep-link fallback.
+PASS: third-party notices included.
+PASS: server exited on SIGTERM.
+This smoke test used a temporary alternate port only. Normal user data address remains 127.0.0.1:4173.
+
+Launcher output:
+
+  IAN — Translation Review Workspace
+
+  Open: http://127.0.0.1:4193
+  Keep this terminal open. Stop with Ctrl+C.
+  Always use the same browser, profile and address.
+  Documents stay in your browser. Back up JSON regularly.
+

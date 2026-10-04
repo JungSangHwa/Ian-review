@@ -1,0 +1,224 @@
+
+> ian-review-frontend@1.0.0 test
+> node --require ./scripts/register-ts.cjs --test tests/*.test.cjs
+
+TAP version 13
+# Subtest: blank target creates a blocking missing-translation issue
+ok 1 - blank target creates a blocking missing-translation issue
+  ---
+  duration_ms: 2.25824
+  type: 'test'
+  ...
+# Subtest: normal translation has no manufactured quality score or issue
+ok 2 - normal translation has no manufactured quality score or issue
+  ---
+  duration_ms: 0.499632
+  type: 'test'
+  ...
+# Subtest: numeric mismatch is a warning, not an automatic rewrite
+ok 3 - numeric mismatch is a warning, not an automatic rewrite
+  ---
+  duration_ms: 0.492852
+  type: 'test'
+  ...
+# Subtest: numeric thousands separators and fullwidth digits normalize
+ok 4 - numeric thousands separators and fullwidth digits normalize
+  ---
+  duration_ms: 0.169956
+  type: 'test'
+  ...
+# Subtest: repeated numeric tokens are compared with multiplicity
+ok 5 - repeated numeric tokens are compared with multiplicity
+  ---
+  duration_ms: 0.254223
+  type: 'test'
+  ...
+# Subtest: missing placeholder is an error
+ok 6 - missing placeholder is an error
+  ---
+  duration_ms: 0.149065
+  type: 'test'
+  ...
+# Subtest: template and printf placeholders remain intact
+ok 7 - template and printf placeholders remain intact
+  ---
+  duration_ms: 0.190767
+  type: 'test'
+  ...
+# Subtest: spaces provide a whole-segment correction
+ok 8 - spaces provide a whole-segment correction
+  ---
+  duration_ms: 0.241424
+  type: 'test'
+  ...
+# Subtest: glossary rules are scoped to the language pair
+ok 9 - glossary rules are scoped to the language pair
+  ---
+  duration_ms: 0.662066
+  type: 'test'
+  ...
+# Subtest: English glossary uses boundaries, Korean allows suffixes
+ok 10 - English glossary uses boundaries, Korean allows suffixes
+  ---
+  duration_ms: 0.510719
+  type: 'test'
+  ...
+# Subtest: recheck preserves dismissal only for same revision
+ok 11 - recheck preserves dismissal only for same revision
+  ---
+  duration_ms: 0.52489
+  type: 'test'
+  ...
+# Subtest: glossary severity changes produce a new issue
+ok 12 - glossary severity changes produce a new issue
+  ---
+  duration_ms: 0.214123
+  type: 'test'
+  ...
+# Subtest: segment edit increments revision, stores history, revokes reviewed
+ok 13 - segment edit increments revision, stores history, revokes reviewed
+  ---
+  duration_ms: 0.209967
+  type: 'test'
+  ...
+# Subtest: unchanged save does not create extra revision
+ok 14 - unchanged save does not create extra revision
+  ---
+  duration_ms: 0.115794
+  type: 'test'
+  ...
+# Subtest: stale edit rejected without touching text
+ok 15 - stale edit rejected without touching text
+  ---
+  duration_ms: 0.337488
+  type: 'test'
+  ...
+# Subtest: stale manual suggestion cannot overwrite a newer revision
+ok 16 - stale manual suggestion cannot overwrite a newer revision
+  ---
+  duration_ms: 0.275935
+  type: 'test'
+  ...
+# Subtest: applying suggestion closes obsolete checks and persists applied history
+ok 17 - applying suggestion closes obsolete checks and persists applied history
+  ---
+  duration_ms: 0.344549
+  type: 'test'
+  ...
+# Subtest: finalization requires reviewed paragraphs and no open issues
+ok 18 - finalization requires reviewed paragraphs and no open issues
+  ---
+  duration_ms: 0.21264
+  type: 'test'
+  ...
+# Subtest: empty segment cannot be reviewed
+ok 19 - empty segment cannot be reviewed
+  ---
+  duration_ms: 0.142995
+  type: 'test'
+  ...
+# Subtest: history is bounded to 30 previous versions
+ok 20 - history is bounded to 30 previous versions
+  ---
+  duration_ms: 1.128109
+  type: 'test'
+  ...
+# Subtest: CSV handles BOM, CRLF, quotes, commas and embedded newlines
+ok 21 - CSV handles BOM, CRLF, quotes, commas and embedded newlines
+  ---
+  duration_ms: 0.772694
+  type: 'test'
+  ...
+# Subtest: CSV rejects unclosed quotes and ragged rows
+ok 22 - CSV rejects unclosed quotes and ragged rows
+  ---
+  duration_ms: 0.187392
+  type: 'test'
+  ...
+# Subtest: CSV requires headers and nonempty sources
+ok 23 - CSV requires headers and nonempty sources
+  ---
+  duration_ms: 0.213681
+  type: 'test'
+  ...
+# Subtest: CSV import accepts blank targets and reordered extra columns
+ok 24 - CSV import accepts blank targets and reordered extra columns
+  ---
+  duration_ms: 0.103526
+  type: 'test'
+  ...
+# Subtest: CSV neutralizes formula-like cells including whitespace prefix
+ok 25 - CSV neutralizes formula-like cells including whitespace prefix
+  ---
+  duration_ms: 0.206401
+  type: 'test'
+  ...
+# Subtest: CSV quoting round trips ordinary punctuation
+ok 26 - CSV quoting round trips ordinary punctuation
+  ---
+  duration_ms: 0.127292
+  type: 'test'
+  ...
+# Subtest: paragraph and line splitting are explicit
+ok 27 - paragraph and line splitting are explicit
+  ---
+  duration_ms: 0.198679
+  type: 'test'
+  ...
+# Subtest: filenames cannot inject paths or control characters
+ok 28 - filenames cannot inject paths or control characters
+  ---
+  duration_ms: 0.142995
+  type: 'test'
+  ...
+# Subtest: JSON backup round trip preserves exact data
+ok 29 - JSON backup round trip preserves exact data
+  ---
+  duration_ms: 1.297864
+  type: 'test'
+  ...
+# Subtest: bad JSON and unsupported versions fail before restore
+ok 30 - bad JSON and unsupported versions fail before restore
+  ---
+  duration_ms: 0.177056
+  type: 'test'
+  ...
+# Subtest: schema catches duplicate IDs and broken segment references
+ok 31 - schema catches duplicate IDs and broken segment references
+  ---
+  duration_ms: 0.303327
+  type: 'test'
+  ...
+# Subtest: schema rejects invalid dates and finalized-but-unreviewed data
+ok 32 - schema rejects invalid dates and finalized-but-unreviewed data
+  ---
+  duration_ms: 0.220092
+  type: 'test'
+  ...
+# Subtest: evaluation requires all six ratings and an explicit preference
+ok 33 - evaluation requires all six ratings and an explicit preference
+  ---
+  duration_ms: 0.155494
+  type: 'test'
+  ...
+# Subtest: submitted evaluation is immutable
+ok 34 - submitted evaluation is immutable
+  ---
+  duration_ms: 0.30499
+  type: 'test'
+  ...
+# Subtest: examples are explicit, labeled, valid and cannot duplicate
+ok 35 - examples are explicit, labeled, valid and cannot duplicate
+  ---
+  duration_ms: 1.760981
+  type: 'test'
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 441.191691

@@ -1,0 +1,479 @@
+{
+  "id": "ian-qa-2026-09-v1",
+  "authoredBy": "ChatGPT",
+  "cases": [
+    {
+      "id": "C01",
+      "group": "clean",
+      "source": "Welcome to your workspace.",
+      "target": "워크스페이스에 오신 것을 환영합니다.",
+      "reference": "워크스페이스에 오신 것을 환영합니다.",
+      "expectedRules": [],
+      "purpose": "용어집 적용",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C02",
+      "group": "clean",
+      "source": "You have 1,200 credits and 3 projects.",
+      "target": "크레딧 1200개와 프로젝트 3개가 있습니다.",
+      "reference": "크레딧 1200개와 프로젝트 3개가 있습니다.",
+      "expectedRules": [],
+      "purpose": "천 단위 쉼표 정규화",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C03",
+      "group": "clean",
+      "source": "Hello {name}, you have {count} messages.",
+      "target": "{name}님, 메시지가 {count}개 있습니다.",
+      "reference": "{name}님, 메시지가 {count}개 있습니다.",
+      "expectedRules": [],
+      "purpose": "중괄호 변수 보존",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C04",
+      "group": "clean",
+      "source": "Version ２ supports １０００ records.",
+      "target": "버전 2는 레코드 1000개를 지원합니다.",
+      "reference": "버전 2는 레코드 1000개를 지원합니다.",
+      "expectedRules": [],
+      "purpose": "전각 숫자 정규화",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C05",
+      "group": "clean",
+      "source": "Choose \"Save, then close\".\nYour draft will remain available.",
+      "target": "\"저장 후 닫기\"를 선택하세요.\n초안은 계속 이용할 수 있습니다.",
+      "reference": "\"저장 후 닫기\"를 선택하세요.\n초안은 계속 이용할 수 있습니다.",
+      "expectedRules": [],
+      "purpose": "CSV 쉼표·따옴표·셀 내부 줄바꿈",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C06",
+      "group": "clean",
+      "source": "You are all set! 🎉",
+      "target": "준비가 모두 끝났어요! 🎉",
+      "reference": "준비가 모두 끝났어요! 🎉",
+      "expectedRules": [],
+      "purpose": "이모지와 유니코드",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C07",
+      "group": "clean",
+      "source": "Click <b>Save</b> to continue.",
+      "target": "계속하려면 <b>저장</b>을 클릭하세요.",
+      "reference": "계속하려면 <b>저장</b>을 클릭하세요.",
+      "expectedRules": [],
+      "purpose": "마크업을 포함한 일반 텍스트",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C08",
+      "group": "clean",
+      "source": "The adjustment is -5, followed by +3.",
+      "target": "조정값은 -5이고, 그다음은 +3입니다.",
+      "reference": "조정값은 -5이고, 그다음은 +3입니다.",
+      "expectedRules": [],
+      "purpose": "부호 있는 숫자 보존",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C09",
+      "group": "clean",
+      "source": "User %1$s has %2$d files.",
+      "target": "%1$s님에게 파일이 %2$d개 있습니다.",
+      "reference": "%1$s님에게 파일이 %2$d개 있습니다.",
+      "expectedRules": [],
+      "purpose": "순서 지정 printf 변수",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C10",
+      "group": "clean",
+      "source": "OpenAI",
+      "target": "OpenAI",
+      "reference": "OpenAI",
+      "expectedRules": [],
+      "purpose": "짧은 고유명사 유지",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C11",
+      "group": "clean",
+      "source": "For subscription changes, contact our support team.",
+      "target": "구독을 변경하려면 지원 팀에 문의하세요.",
+      "reference": "구독을 변경하려면 지원 팀에 문의하세요.",
+      "expectedRules": [],
+      "purpose": "한 문장의 복수 용어",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "C12",
+      "group": "clean",
+      "source": "Do not share your password.",
+      "target": "비밀번호를 공유하지 마세요.",
+      "reference": "비밀번호를 공유하지 마세요.",
+      "expectedRules": [],
+      "purpose": "금지 의미 보존",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E01",
+      "group": "errors",
+      "source": "Your changes have been saved.",
+      "target": "",
+      "reference": "변경 사항을 저장했습니다.",
+      "expectedRules": [
+        "번역 누락"
+      ],
+      "purpose": "빈 번역문",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E02",
+      "group": "errors",
+      "source": "Invite up to 10 teammates.",
+      "target": "팀원을 최대 5명까지 초대하세요.",
+      "reference": "팀원을 최대 10명까지 초대하세요.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "수량 변경",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E03",
+      "group": "errors",
+      "source": "There are 10 files and 10 folders.",
+      "target": "파일 10개와 폴더가 있습니다.",
+      "reference": "파일 10개와 폴더 10개가 있습니다.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "중복 숫자 중 하나 누락",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E04",
+      "group": "errors",
+      "source": "Welcome, {name}.",
+      "target": "환영합니다.",
+      "reference": "{name}님, 환영합니다.",
+      "expectedRules": [
+        "변수 확인"
+      ],
+      "purpose": "변수 누락",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E05",
+      "group": "errors",
+      "source": "Total: ${amount}",
+      "target": "합계: ${total}",
+      "reference": "합계: ${amount}",
+      "expectedRules": [
+        "변수 확인"
+      ],
+      "purpose": "템플릿 변수 이름 변경",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E06",
+      "group": "errors",
+      "source": "{{name}} invited {{name}}.",
+      "target": "{{name}}님이 초대했습니다.",
+      "reference": "{{name}}님이 {{name}}님을 초대했습니다.",
+      "expectedRules": [
+        "변수 확인"
+      ],
+      "purpose": "중복 변수 중 하나 누락",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E07",
+      "group": "errors",
+      "source": "Please confirm your email address before continuing.",
+      "target": "Please confirm your email address before continuing.",
+      "reference": "계속하려면 이메일 주소를 확인해 주세요.",
+      "expectedRules": [
+        "미번역 의심"
+      ],
+      "purpose": "영문 전체 미번역",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E08",
+      "group": "errors",
+      "source": "Save your changes.",
+      "target": "  변경 사항을  저장하세요. ",
+      "reference": "변경 사항을 저장하세요.",
+      "expectedRules": [
+        "공백 정리"
+      ],
+      "purpose": "앞뒤·중복 공백",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E09",
+      "group": "errors",
+      "source": "Open your workspace.",
+      "target": "작업 공간을 여세요.",
+      "reference": "워크스페이스를 여세요.",
+      "expectedRules": [
+        "용어 일관성"
+      ],
+      "purpose": "권장 용어 미사용",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E10",
+      "group": "errors",
+      "source": "Hi {name}, your workspace includes 10 seats.",
+      "target": "안녕하세요. 작업 공간에는 좌석 5개가 포함됩니다.",
+      "reference": "{name}님, 워크스페이스에는 좌석 10개가 포함됩니다.",
+      "expectedRules": [
+        "숫자 확인",
+        "변수 확인",
+        "용어 일관성"
+      ],
+      "purpose": "숫자·변수·용어 복합 오류",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E11",
+      "group": "errors",
+      "source": "The temperature is -5°C.",
+      "target": "기온은 5°C입니다.",
+      "reference": "기온은 -5°C입니다.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "음수 부호 누락",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E12",
+      "group": "errors",
+      "source": "Result code: %02d.",
+      "target": "결과 코드: %02s.",
+      "reference": "결과 코드: %02d.",
+      "expectedRules": [
+        "변수 확인"
+      ],
+      "purpose": "폭 지정 printf 변수 타입 변경",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E13",
+      "group": "errors",
+      "source": "Average: %0.2f.",
+      "target": "평균: %0.2s.",
+      "reference": "평균: %0.2f.",
+      "expectedRules": [
+        "변수 확인"
+      ],
+      "purpose": "소수 정밀도 printf 변수 타입 변경",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "E14",
+      "group": "errors",
+      "source": "Save 20% on your next order.",
+      "target": "다음 주문에서 25% 할인받으세요.",
+      "reference": "다음 주문에서 20% 할인받으세요.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "할인율 변경",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "M01",
+      "group": "meaning",
+      "source": "You must not share this link.",
+      "target": "이 링크를 반드시 공유해야 합니다.",
+      "reference": "이 링크를 공유하면 안 됩니다.",
+      "expectedRules": [],
+      "purpose": "규칙으로 탐지할 수 없는 금지 의미 반전",
+      "manualReason": "must not은 금지입니다. 의무적으로 공유하라는 뜻으로 반전되었습니다.",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "M02",
+      "group": "meaning",
+      "source": "The server receives only metadata, never the document text.",
+      "target": "서버는 메타데이터와 문서 본문을 모두 받습니다.",
+      "reference": "서버는 메타데이터만 받으며 문서 본문은 받지 않습니다.",
+      "expectedRules": [],
+      "purpose": "전송 범위 의미 왜곡",
+      "manualReason": "only와 never가 소실되어 문서 본문도 전송된다는 반대 의미가 되었습니다.",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "M03",
+      "group": "meaning",
+      "source": "Save your changes as a draft.",
+      "target": "변경 사항을 초안으로 삭제하세요.",
+      "reference": "변경 사항을 초안으로 저장하세요.",
+      "expectedRules": [],
+      "purpose": "동작 의미 오역",
+      "manualReason": "Save는 저장인데 삭제로 번역했습니다.",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "M04",
+      "group": "meaning",
+      "source": "We will reply within 3 business days.",
+      "target": "3일 이내에 답변드리겠습니다.",
+      "reference": "영업일 기준 3일 이내에 답변드리겠습니다.",
+      "expectedRules": [],
+      "purpose": "숫자는 맞지만 조건 누락",
+      "manualReason": "business days는 영업일 기준이며 일반 달력상의 3일과 다릅니다.",
+      "sourceLang": "en",
+      "targetLang": "ko"
+    },
+    {
+      "id": "R01",
+      "group": "reverse",
+      "source": "파일을 최대 10개까지 올릴 수 있습니다.",
+      "target": "You can upload up to 10 files.",
+      "reference": "You can upload up to 10 files.",
+      "expectedRules": [],
+      "purpose": "한영 수량 보존",
+      "sourceLang": "ko",
+      "targetLang": "en"
+    },
+    {
+      "id": "R02",
+      "group": "reverse",
+      "source": "{name}님, 결제를 완료했습니다.",
+      "target": "{name}, your payment is complete.",
+      "reference": "{name}, your payment is complete.",
+      "expectedRules": [],
+      "purpose": "한영 변수 보존",
+      "sourceLang": "ko",
+      "targetLang": "en"
+    },
+    {
+      "id": "R03",
+      "group": "reverse",
+      "source": "워크스페이스를 열어 주세요.",
+      "target": "Please open the workspace.",
+      "reference": "Please open the workspace.",
+      "expectedRules": [],
+      "purpose": "언어 방향별 용어집",
+      "sourceLang": "ko",
+      "targetLang": "en"
+    },
+    {
+      "id": "R04",
+      "group": "reverse",
+      "source": "재고 변동량은 -2개입니다.",
+      "target": "The inventory change is 2 units.",
+      "reference": "The inventory change is -2 units.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "한영 음수 부호 누락",
+      "sourceLang": "ko",
+      "targetLang": "en"
+    },
+    {
+      "id": "R05",
+      "group": "reverse",
+      "source": "불편을 드려 죄송합니다. 확인 후 안내드리겠습니다.",
+      "target": "We apologize for the inconvenience. We will look into this and get back to you.",
+      "reference": "We apologize for the inconvenience. We will look into this and get back to you.",
+      "expectedRules": [],
+      "purpose": "고객 지원 문체",
+      "sourceLang": "ko",
+      "targetLang": "en"
+    },
+    {
+      "id": "R06",
+      "group": "reverse",
+      "source": "기온은 섭씨 20도입니다.",
+      "target": "The temperature is 68°F.",
+      "reference": "The temperature is 68°F.",
+      "expectedRules": [
+        "숫자 확인"
+      ],
+      "purpose": "정당한 단위 환산도 경고하는 한계 확인",
+      "intentionalDifference": true,
+      "sourceLang": "ko",
+      "targetLang": "en"
+    }
+  ],
+  "evaluations": [
+    {
+      "title": "금지 의미 보존",
+      "source": "You must not share this link.",
+      "sourceLang": "en",
+      "targetLang": "ko",
+      "reference": "이 링크를 공유하면 안 됩니다.",
+      "perturbed": "이 링크를 반드시 공유해야 합니다.",
+      "reason": "기준 번역은 금지 의미를 보존합니다. 오류 주입 후보는 의미를 반대로 바꿨습니다."
+    },
+    {
+      "title": "UX 문장 자연스러움",
+      "source": "You are all set. Pick up where you left off.",
+      "sourceLang": "en",
+      "targetLang": "ko",
+      "reference": "준비가 끝났어요. 하던 작업을 이어서 시작하세요.",
+      "perturbed": "당신은 모두 설정되었습니다. 당신이 떠난 곳에서 집어 올리세요.",
+      "reason": "기준 번역은 이어서 작업하라는 의도를 자연스럽게 전달합니다. 대조 후보는 관용 표현을 직역했습니다."
+    },
+    {
+      "title": "숫자·용어 보존",
+      "source": "Your subscription includes 100 GB of storage.",
+      "sourceLang": "en",
+      "targetLang": "ko",
+      "reference": "구독에는 저장 공간 100GB가 포함됩니다.",
+      "perturbed": "가입에는 저장 공간 10GB가 포함됩니다.",
+      "reason": "기준 번역은 100과 권장 용어 구독을 보존합니다."
+    },
+    {
+      "title": "한영 조건 보존",
+      "source": "영업일 기준 3일 이내에 답변드리겠습니다.",
+      "sourceLang": "ko",
+      "targetLang": "en",
+      "reference": "We will reply within 3 business days.",
+      "perturbed": "We will reply exactly 3 days from now.",
+      "reason": "기준 번역은 기한과 영업일 조건을 보존합니다."
+    }
+  ]
+}

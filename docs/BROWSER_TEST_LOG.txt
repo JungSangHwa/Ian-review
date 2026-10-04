@@ -1,0 +1,20 @@
+test_01_examples_apply_review_finalize_and_exports (__main__.BrowserTests.test_01_examples_apply_review_finalize_and_exports) ... ok
+test_02_empty_translation_blocks_completion (__main__.BrowserTests.test_02_empty_translation_blocks_completion) ... ok
+test_03_manual_issue_stale_suggestion_history_and_refresh (__main__.BrowserTests.test_03_manual_issue_stale_suggestion_history_and_refresh) ... ok
+test_04_unsaved_navigation_is_guarded (__main__.BrowserTests.test_04_unsaved_navigation_is_guarded) ... ok
+test_05_csv_import_multiline_and_validation (__main__.BrowserTests.test_05_csv_import_multiline_and_validation) ... ok
+test_06_evaluation_draft_submission_and_identity_reveal (__main__.BrowserTests.test_06_evaluation_draft_submission_and_identity_reveal) ... ok
+test_07_backup_restore_recovery_and_bad_file (__main__.BrowserTests.test_07_backup_restore_recovery_and_bad_file) ... ok
+test_08_glossary_recheck_revokes_approval_and_rejects_duplicates (__main__.BrowserTests.test_08_glossary_recheck_revokes_approval_and_rejects_duplicates) ... ok
+test_09_stale_tab_cannot_overwrite_saved_data (__main__.BrowserTests.test_09_stale_tab_cannot_overwrite_saved_data) ... ok
+test_10_mobile_navigation_and_no_page_overflow (__main__.BrowserTests.test_10_mobile_navigation_and_no_page_overflow) ... ok
+test_11_global_search_and_unknown_routes (__main__.BrowserTests.test_11_global_search_and_unknown_routes) ... ok
+test_12_save_failure_preserves_input_and_saved_data (__main__.BrowserTests.test_12_save_failure_preserves_input_and_saved_data) ... ok
+test_13_storage_unavailable_shows_error_not_fake_success (__main__.BrowserTests.test_13_storage_unavailable_shows_error_not_fake_success) ... ok
+test_14_text_rendering_does_not_execute_html (__main__.BrowserTests.test_14_text_rendering_does_not_execute_html) ... ok
+test_15_server_boundaries_and_deep_link (__main__.BrowserTests.test_15_server_boundaries_and_deep_link) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 28.870s
+
+OK

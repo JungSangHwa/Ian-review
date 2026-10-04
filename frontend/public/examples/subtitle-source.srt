@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:03,200
+Commander, we have reached Moonspire.
+
+2
+00:00:03,400 --> 00:00:05,500
+Kael, keep the oathstone close.
+
+3
+00:00:05,700 --> 00:00:08,000
+Serin, the Starward Order needs you.
+
+4
+00:00:08,300 --> 00:00:10,600
+We survived Starfall together.
+
+5
+00:00:11,000 --> 00:00:13,000
+By the stars, I will not run.
+
+6
+00:00:13,300 --> 00:00:15,800
+Kael, look at me.
+The oathstone is safe.
+
+7
+00:00:16,000 --> 00:00:18,200
+Serin is waiting at Moonspire.
+
+8
+00:00:18,500 --> 00:00:21,000
+The Order will remember this night.

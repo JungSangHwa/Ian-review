@@ -1,0 +1,47 @@
+import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { projectNames, projectPath } from '../lib/projects'
+import { useWorkspace } from '../state/WorkspaceContext'
+import { Badge, Button, PageHeading, UnsavedGuard } from '../components/UI'
+import Icon from '../components/Icon'
+import { AI_PROVIDERS, type ProjectAIConfig } from '../lib/aiTypes'
+import { fetchAIModels, saveAIConfig, projectAIConfig, testAIConnection } from '../lib/aiTranslation'
+import { termKey } from '../lib/terminology'
+import { logActivity } from '../lib/model'
+import { recordModelCheck } from '../lib/uiState'
+import { useAIJobs } from '../state/AIJobsContext'
+import { acquireRun, isRunActive } from '../lib/runLease'
+export default function ModelsPage(){
+  const {state,run,busy,notify}=useWorkspace(), {project:routeProject}=useParams()
+  const jobs=useAIJobs()
+  const workNames=projectNames(state)
+  const [project,setProject]=useState(routeProject??new URLSearchParams(window.location.search).get('project')??workNames[0]??''),[model,setModel]=useState(''),[instructions,setInstructions]=useState(''),[batchChars,setBatchChars]=useState(4000),[tested,setTested]=useState(''),[testing,setTesting]=useState(false),[models,setModels]=useState<{id:string;label:string}[]>([]),[loadingModels,setLoadingModels]=useState(false),[manualModel,setManualModel]=useState(true)
+  const activeProject=routeProject||project
+  const existing=projectAIConfig(state,activeProject)
+  const savedProvider=existing?.provider,savedModel=existing?.model,savedInstructions=existing?.instructions,savedBatchChars=existing?.batchChars
+  const dirty=model!==(existing?.provider==='local'?existing.model:'')||instructions!==(existing?.provider==='local'?existing.instructions:'')||batchChars!==(existing?.provider==='local'?existing.batchChars:4000)
+  const modelListRequestId=useRef(0), connectionRequestId=useRef(0), requestTarget=useRef('')
+  requestTarget.current=`${activeProject}\0${model}`
+  const scanning=!!jobs.job&&termKey(jobs.job.project)===termKey(activeProject)&&!['completed','paused','failed'].includes(jobs.job.phase)
+  useEffect(()=>{if(routeProject)setProject(routeProject)},[routeProject])
+  useEffect(()=>{modelListRequestId.current++;connectionRequestId.current++;setLoadingModels(false);setTesting(false);setModel(savedProvider==='local'?savedModel??'':'');setInstructions(savedProvider==='local'?savedInstructions??'':'');setBatchChars(savedProvider==='local'?savedBatchChars??4000:4000);setTested('');setModels([]);setManualModel(true)},[activeProject,savedProvider,savedModel,savedInstructions,savedBatchChars])
+  const save=async(e:FormEvent)=>{e.preventDefault();if(!activeProject.trim())return notify('먼저 작품을 선택해 주세요.','error');if(await run(s=>{const config:ProjectAIConfig={project:activeProject.trim(),provider:'local',model:model.trim(),instructions:instructions.trim(),batchChars};saveAIConfig(s,config);logActivity(s,`“${activeProject.trim()}” 번역 모델 ${AI_PROVIDERS.local.label} · ${model.trim()} 설정`)},'이 작품의 모델 설정을 저장했습니다.'))setTested('')}
+  const test=async()=>{if(!model.trim()){notify('모델 ID를 입력해 주세요.','error');return}const id=++connectionRequestId.current,target=requestTarget.current;let release:()=>void;try{release=acquireRun('model-global')}catch(e){notify(e instanceof Error?e.message:'모델을 사용 중입니다.','error');return}setTesting(true);setTested('');try{await testAIConnection({provider:'local',model:model.trim()},'');if(id===connectionRequestId.current&&target===requestTarget.current){setTested('연결 성공 · 이 모델에 짧은 테스트 요청을 보냈습니다.');recordModelCheck(activeProject,{model:model.trim(),at:new Date().toISOString(),ok:true})}}catch(e){if(id===connectionRequestId.current&&target===requestTarget.current){const message=e instanceof Error?e.message:'모델 연결을 확인하지 못했습니다.';recordModelCheck(activeProject,{model:model.trim(),at:new Date().toISOString(),ok:false,error:message.slice(0,200)});notify(message,'error')}}finally{release();if(id===connectionRequestId.current)setTesting(false)}}
+  const loadModels=async()=>{const id=++modelListRequestId.current,target=requestTarget.current;setLoadingModels(true);setModels([]);try{const available=await fetchAIModels('local','');if(id!==modelListRequestId.current||target!==requestTarget.current)return;setModels(available);if(available.some(m=>m.id===model))setManualModel(false);else if(available.length){setModel(available[0].id);setManualModel(false)}setTested('');notify(`${available.length}개 설치된 모델을 불러왔습니다.`)}catch(e){if(id===modelListRequestId.current)notify(e instanceof Error?e.message:'모델 목록을 불러오지 못했습니다.','error')}finally{if(id===modelListRequestId.current)setLoadingModels(false)}}
+  return <div className="stack-lg"><UnsavedGuard dirty={dirty}/><PageHeading eyebrow="MODEL CONNECTION" title="작품별 모델 연결" description="프로젝트에서 용어집 생성과 번역에 사용할 로컬 모델을 설정합니다."><Link to="/settings" className="button button--secondary">데이터 관리로 돌아가기</Link></PageHeading>
+    <div className="import-note"><Icon name="shield" size={19}/><span>Ollama가 실행 중이어야 합니다. 원문과 용어는 이 PC의 Ollama로 전달되며 API 키는 필요하지 않습니다.</span></div>{existing?.provider!==undefined&&existing.provider!=='local'&&<div className="import-note" role="alert">이전 백업의 외부 모델 설정은 이 로컬 실행판에서 사용할 수 없습니다. 설치된 Ollama 모델을 선택하고 다시 저장해 주세요.</div>}
+    <form className="panel form-panel stack-md" onSubmit={save}>
+      <div className="section-step"><span>01</span><h2>프로젝트와 로컬 모델</h2></div>
+      <label className="field">작품 이름{routeProject?<input readOnly value={routeProject}/>:<select required value={project} onChange={e=>{if(dirty&&!window.confirm('저장하지 않은 모델 설정을 버리고 다른 작품을 선택할까요?'))return;setProject(e.target.value)}}><option value="" disabled>작품 선택</option>{workNames.map(name=><option key={name} value={name}>{name}</option>)}</select>}<small>작품별로 로컬 모델과 번역 기준을 저장합니다.</small></label>
+      <div className="two-cols"><label className="field">모델 제공사<input readOnly value="로컬 Ollama"/></label><div className="field"><label htmlFor="model-id">모델 ID</label>{models.length>0&&!manualModel?<select id="model-id" required value={model} onChange={e=>{if(e.target.value==='__manual__'){setManualModel(true);setModel('')}else{setModel(e.target.value);setTested('')}}}><option value="" disabled>사용 가능 모델 선택</option>{models.map(m=><option key={m.id} value={m.id}>{m.id}{m.label&&m.label!==m.id?` · ${m.label}`:''}</option>)}<option value="__manual__">목록에 없는 모델 ID 직접 입력</option></select>:<input id="model-id" required maxLength={200} pattern="[a-zA-Z0-9][a-zA-Z0-9_./:@+-]{0,199}" list="api-model-options" value={model} onChange={e=>{setModel(e.target.value);setTested('')}} placeholder="모델 목록 조회 후 선택 가능"/>}<datalist id="api-model-options">{models.map(m=><option key={m.id} value={m.id}>{m.label}</option>)}</datalist><small>Ollama에 설치된 모델을 불러오거나 모델 이름을 직접 적으세요.</small></div></div>
+      <div className="model-doc-links"><a href={AI_PROVIDERS.local.keys} target="_blank" rel="noreferrer">Ollama 설치 ↗</a><a href={AI_PROVIDERS.local.docs} target="_blank" rel="noreferrer">Ollama API 안내 ↗</a></div>
+      <div className="inline-actions"><Button type="button" variant="secondary" disabled={loadingModels} onClick={()=>void loadModels()}>{loadingModels?'모델 목록 확인 중…':'설치된 모델 불러오기'}</Button><Button type="button" variant="secondary" disabled={testing||isRunActive('model-global')||!model.trim()} onClick={test}>{testing?'연결 확인 중…':'모델 연결 확인'}</Button>{tested&&<Badge tone="green">{tested}</Badge>}</div>
+      <div className="section-step"><span>02</span><h2>번역 기준</h2></div>
+      <label className="field">작품 공통 번역 메모<textarea rows={4} maxLength={3000} value={instructions} onChange={e=>setInstructions(e.target.value)} placeholder="예: 등장인물의 관계와 반말·존댓말을 유지합니다. 고풍스러운 판타지 문체를 사용합니다."/><small>인물 관계·말투·표기 규칙이 모든 번역 묶음에 포함됩니다. 고유명사·별칭·호칭 기준은 모델이 프로젝트 용어집에 생성합니다.</small></label>
+      <label className="field">한 번에 보낼 원문 양<select value={batchChars} onChange={e=>setBatchChars(Number(e.target.value))}><option value={2000}>약 2,000자 · 응답 길이 줄이기</option><option value={4000}>약 4,000자 · 기본</option><option value={6000}>약 6,000자 · 앞뒤 문맥 늘리기</option></select><small>문단은 나누지 않습니다. 12,000자를 넘는 구간은 자동 번역할 수 없으므로 원고 등록 전에 문단을 나눠 주세요. 자막은 시간 구간을 보존합니다.</small></label>
+      <div className="form-footer"><span>{existing?'현재 이 작품에 저장된 모델 설정을 편집합니다.':'모델 설정에는 작품 이름·모델 ID·번역 메모만 저장합니다.'}</span><Button type="submit" disabled={busy||scanning} icon="check">작품 모델 설정 저장</Button></div>
+    </form>
+    <section className="panel"><div className="panel-header"><h2>연결된 작품 모델</h2><Badge>{routeProject ? (existing ? 1 : 0) : (state.aiProjects?.length??0)}</Badge></div>{(routeProject ? !!existing : !!state.aiProjects?.length)?<div className="connected-models">{(routeProject ? [existing!] : state.aiProjects!).map(config=><button key={termKey(config.project)} disabled={scanning||!!routeProject} className={termKey(config.project)===termKey(activeProject)?'active':''} onClick={()=>{if(dirty&&!window.confirm('저장하지 않은 모델 설정을 버리고 다른 작품을 선택할까요?'))return;setProject(config.project)}}><strong>{config.project}</strong><span>{AI_PROVIDERS[config.provider].label} · {config.model}</span></button>)}</div>:<p className="muted">작품마다 사용할 모델 설정을 저장하면 여기에 표시됩니다.</p>}</section>
+    {activeProject.trim()&&<section className="panel"><div className="panel-header"><h2>번역 기준 문서</h2></div><p className="muted">모델 설정을 저장한 뒤 프로젝트 용어집에서 원문 전체의 용어와 맥락을 생성하세요. 번역을 시작해도 용어집 생성·검증부터 자동으로 진행합니다.</p><Link className="button button--secondary" to={projectPath(activeProject,'glossary')}>프로젝트 용어집 열기</Link></section>}
+  </div>
+}

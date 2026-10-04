@@ -1,0 +1,190 @@
+{
+  "generatedAt": "2026-09-27T15:46:15.010Z",
+  "work": "별빛 서약",
+  "author": "ChatGPT",
+  "automatedTests": {
+    "tests": 149,
+    "pass": 149,
+    "fail": 0
+  },
+  "documents": 3,
+  "segments": 20,
+  "glossary": 8,
+  "correctedSegments": 18,
+  "terminologyIssuesBefore": 30,
+  "terminologyIssuesAfter": 0,
+  "sourceAndTimingPreserved": true,
+  "storage": "Production adapter with fake-indexeddb; not a real browser",
+  "browserUi": "Unavailable: supervised preview infrastructure",
+  "model": "Authored synthetic translations; no external translation model API",
+  "rows": [
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 1,
+      "source": "Commander, we have reached Moonspire.",
+      "before": "사령관님, 달빛탑에 도착했습니다.",
+      "after": "단장님, 월광첨탑에 도착했습니다.",
+      "changed": true,
+      "timing": "00:00:01,000 --> 00:00:03,200"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 2,
+      "source": "Kael, keep the oathstone close.",
+      "before": "케일, 맹세의 돌을 잘 간직해.",
+      "after": "카엘, 서약석을 잘 간직해.",
+      "changed": true,
+      "timing": "00:00:03,400 --> 00:00:05,500"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 3,
+      "source": "Serin, the Starward Order needs you.",
+      "before": "셀린, 성광 기사단에는 당신이 필요해요.",
+      "after": "세린, 성휘 기사단에는 당신이 필요해요.",
+      "changed": true,
+      "timing": "00:00:05,700 --> 00:00:08,000"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 4,
+      "source": "We survived Starfall together.",
+      "before": "우리는 함께 스타폴을 견뎌 냈어.",
+      "after": "우리는 함께 성락을 견뎌 냈어.",
+      "changed": true,
+      "timing": "00:00:08,300 --> 00:00:10,600"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 5,
+      "source": "By the stars, I will not run.",
+      "before": "별에 걸고, 도망치지 않겠습니다.",
+      "after": "별들에 맹세코, 도망치지 않겠습니다.",
+      "changed": true,
+      "timing": "00:00:11,000 --> 00:00:13,000"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 6,
+      "source": "Kael, look at me.\nThe oathstone is safe.",
+      "before": "카일, 나를 봐.\n맹약석은 무사해.",
+      "after": "카엘, 나를 봐.\n서약석은 무사해.",
+      "changed": true,
+      "timing": "00:00:13,300 --> 00:00:15,800"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 7,
+      "source": "Serin is waiting at Moonspire.",
+      "before": "세린느가 문스파이어에서 기다리고 있습니다.",
+      "after": "세린가 월광첨탑에서 기다리고 있습니다.",
+      "changed": true,
+      "timing": "00:00:16,000 --> 00:00:18,200"
+    },
+    {
+      "document": "[작품 예제] 영상 01 · 성문 앞의 대화",
+      "segment": 8,
+      "source": "The Order will remember this night.",
+      "before": "별빛 기사단은 오늘 밤을 기억할 것이다.",
+      "after": "성휘 기사단은 오늘 밤을 기억할 것이다.",
+      "changed": true,
+      "timing": "00:00:18,500 --> 00:00:21,000"
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 1,
+      "source": "At dawn, Lady Serin returned to Moonspire.",
+      "before": "새벽에 세린느는 달빛탑으로 돌아왔다.",
+      "after": "새벽에 세린는 월광첨탑으로 돌아왔다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 2,
+      "source": "Kael placed the oathstone on the table.",
+      "before": "카일은 맹약석을 탁자 위에 올려놓았다.",
+      "after": "카엘은 서약석을 탁자 위에 올려놓았다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 3,
+      "source": "The Order had survived Starfall, but not without a cost.",
+      "before": "성광 기사단은 스타폴을 견뎌 냈지만 대가가 없었던 것은 아니다.",
+      "after": "성휘 기사단은 성락을 견뎌 냈지만 대가가 없었던 것은 아니다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 4,
+      "source": "\"Commander, may I stay?\" Kael asked.",
+      "before": "\"지휘관님, 제가 남아도 되겠습니까?\" 케일이 물었다.",
+      "after": "\"단장님, 제가 남아도 되겠습니까?\" 카엘이 물었다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 5,
+      "source": "Serin smiled. \"By the stars, you already belong here.\"",
+      "before": "세린이 미소 지었다. \"별들에 맹세코, 너는 이미 이곳의 일원이야.\"",
+      "after": "세린이 미소 지었다. \"별들에 맹세코, 너는 이미 이곳의 일원이야.\"",
+      "changed": false
+    },
+    {
+      "document": "[작품 예제] 02화 · 이어지는 서약",
+      "segment": 6,
+      "source": "Beyond Moonspire, the first light touched the forest.",
+      "before": "월광첨탑 너머로 첫 햇살이 숲을 비추었다.",
+      "after": "월광첨탑 너머로 첫 햇살이 숲을 비추었다.",
+      "changed": false
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 1,
+      "source": "Serin stood before the gates of Moonspire.",
+      "before": "셀린은 문스파이어의 성문 앞에 섰다.",
+      "after": "세린은 월광첨탑의 성문 앞에 섰다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 2,
+      "source": "Kael hurried after her, the oathstone cold in his hand.",
+      "before": "케일은 차가운 맹세의 돌을 손에 쥔 채 그녀를 뒤따라 달렸다.",
+      "after": "카엘은 차가운 서약석을 손에 쥔 채 그녀를 뒤따라 달렸다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 3,
+      "source": "\"Commander, the Starward Order is waiting,\" Kael said.",
+      "before": "\"사령관님, 별빛 기사단이 기다리고 있습니다.\" 카엘이 말했다.",
+      "after": "\"단장님, 성휘 기사단이 기다리고 있습니다.\" 카엘이 말했다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 4,
+      "source": "\"By the stars, we will return,\" Serin answered.",
+      "before": "\"별에 걸고, 우리는 돌아올 거야.\" 세린이 대답했다.",
+      "after": "\"별들에 맹세코, 우리는 돌아올 거야.\" 세린이 대답했다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 5,
+      "source": "The scars of Starfall still marked the stone walls.",
+      "before": "별의 추락이 남긴 상처가 아직 돌벽에 새겨져 있었다.",
+      "after": "성락이 남긴 상처가 아직 돌벽에 새겨져 있었다.",
+      "changed": true
+    },
+    {
+      "document": "[작품 예제] 01화 · 월광첨탑의 문",
+      "segment": 6,
+      "source": "Serin nodded to Kael. Serin had not forgotten his promise.",
+      "before": "세린은 카엘에게 고개를 끄덕였다. 셀린은 그의 약속을 잊지 않았다.",
+      "after": "세린은 카엘에게 고개를 끄덕였다. 세린은 그의 약속을 잊지 않았다.",
+      "changed": true
+    }
+  ]
+}

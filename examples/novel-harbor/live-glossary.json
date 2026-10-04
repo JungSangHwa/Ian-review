@@ -1,0 +1,188 @@
+[
+  {
+    "source": "A borrowed voice is not a living man.",
+    "target": "빌려온 목소리는 살아있는 인간이 아니다.",
+    "context": "없음\n맥락 메모 없음",
+    "sourceDetail": "A borrowed voice is not a living man.\n반복 표현 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “A borrowed voice is not a living man.”"
+  },
+  {
+    "source": "Ada",
+    "target": "아다",
+    "context": "없음\n나라의 지인",
+    "sourceDetail": "Ada\n인물명 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Nara remembered Ada laughing”"
+  },
+  {
+    "source": "borrowed light",
+    "target": "빌려온 빛",
+    "context": "없음\n빌려온 것(borrowed)에 대한 은유적 표현",
+    "sourceDetail": "borrowed light\n반복 표현 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Greyhaven had no borrowed light.”"
+  },
+  {
+    "source": "council hall",
+    "target": "의사당",
+    "context": "없음\n항구 위원회 회의 장소",
+    "sourceDetail": "council hall\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “At the council hall, the doors remained shut.”"
+  },
+  {
+    "source": "Elias",
+    "target": "엘리아스",
+    "context": "없음\n노인, 나라와 처음 만난 사이",
+    "sourceDetail": "Elias\n인물명 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Elias”"
+  },
+  {
+    "source": "Elias Ward",
+    "target": "엘리아스 워드",
+    "context": "없음\n노인",
+    "sourceDetail": "Elias Ward\n인물명 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Elias Ward”"
+  },
+  {
+    "source": "Ferryman",
+    "target": "페리맨",
+    "context": "없음\n엘리아스의 별칭",
+    "sourceDetail": "Ferryman\n호칭 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “They usually call me the Ferryman.”"
+  },
+  {
+    "source": "Grey Register",
+    "target": "회색 등록부",
+    "context": "없음\n기록물",
+    "sourceDetail": "Grey Register\n설정·전문어 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Grey Register”"
+  },
+  {
+    "source": "Greyhaven",
+    "target": "회색 항구",
+    "context": "없음\n맥락 메모 없음",
+    "sourceDetail": "Greyhaven\n지명·조직 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Greyhaven”"
+  },
+  {
+    "source": "Harbor Council",
+    "target": "항구 위원회",
+    "context": "없음\n조직",
+    "sourceDetail": "Harbor Council\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “The Harbor Council locked the lower archive”"
+  },
+  {
+    "source": "harbor lamp",
+    "target": "항구 등불",
+    "context": "없음\n항구의 등불",
+    "sourceDetail": "harbor lamp\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “repairing a harbor lamp”"
+  },
+  {
+    "source": "Jun",
+    "target": "준",
+    "context": "없음\n소년, 나라의 친구",
+    "sourceDetail": "Jun\n인물명 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Jun”"
+  },
+  {
+    "source": "lower archive",
+    "target": "하부 기록 보관소",
+    "context": "없음\n맥락 메모 없음",
+    "sourceDetail": "lower archive\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “locked the lower archive”"
+  },
+  {
+    "source": "lower market",
+    "target": "하부 시장",
+    "context": "없음\n침수된 낮은 지대의 시장",
+    "sourceDetail": "lower market\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “filled the lower market”"
+  },
+  {
+    "source": "Mourning Bell",
+    "target": "장례 종",
+    "context": "없음\n장례를 알리는 종",
+    "sourceDetail": "Mourning Bell\n설정·전문어 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Mourning Bell”"
+  },
+  {
+    "source": "Mrs. Vale",
+    "target": "벨 부인",
+    "context": "없음\n맥락 메모 없음",
+    "sourceDetail": "Mrs. Vale\n인물명 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Mrs. Vale”"
+  },
+  {
+    "source": "Nara",
+    "target": "나라",
+    "context": "없음\n성인 수리공, 준의 친구",
+    "sourceDetail": "Nara\n인물명 모델 생성 · 적용 중\nqwen2.5:14b\n원문 근거: “Nara”"
+  },
+  {
+    "source": "Nara Reed",
+    "target": "나라 리드",
+    "context": "없음\n수리공",
+    "sourceDetail": "Nara Reed\n인물명 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “By the time Nara Reed reached the bell tower”"
+  },
+  {
+    "source": "the archive",
+    "target": "기록 보관소",
+    "context": "없음\n하부 기록 보관소(lower archive)를 포함하는 공간",
+    "sourceDetail": "the archive\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “In the archive, the Grey Register had opened to a fresh page.”"
+  },
+  {
+    "source": "the autumn tide",
+    "target": "가을의 조수",
+    "context": "없음\n시간적 한계를 나타내는 표현",
+    "sourceDetail": "the autumn tide\n반복 표현 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “We have until the autumn tide,”"
+  },
+  {
+    "source": "the bell's heart",
+    "target": "종의 심장",
+    "context": "없음\n세 번째 열쇠가 들어가는 장소",
+    "sourceDetail": "the bell's heart\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “The third opens the bell's heart.”"
+  },
+  {
+    "source": "the dead stayed dead",
+    "target": "죽은 자는 죽은 채로 남는다.",
+    "context": "없음\n죽음의 확정성을 나타내는 표현",
+    "sourceDetail": "the dead stayed dead\n반복 표현 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “The dead stayed dead.”"
+  },
+  {
+    "source": "the Ferryman",
+    "target": "페리맨",
+    "context": "없음\n엘리아스의 별칭",
+    "sourceDetail": "the Ferryman\n호칭 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “will you still be the Ferryman?”"
+  },
+  {
+    "source": "the Grey Register",
+    "target": "회색 등록부",
+    "context": "없음\n기록물",
+    "sourceDetail": "the Grey Register\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “the Grey Register had opened to a fresh page.”"
+  },
+  {
+    "source": "the lower archive",
+    "target": "하부 기록 보관소",
+    "context": "없음\n하부 기록 보관소(lower archive)를 포함하는 공간",
+    "sourceDetail": "the lower archive\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “The Harbor Council locked the lower archive after the flood.”"
+  },
+  {
+    "source": "the Mourning Bell",
+    "target": "장례 종",
+    "context": "없음\n장례를 알리는 종",
+    "sourceDetail": "the Mourning Bell\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Above them hung the Mourning Bell”"
+  },
+  {
+    "source": "the third key",
+    "target": "세 번째 열쇠",
+    "context": "없음\n장례 종을 작동시키는 열쇠",
+    "sourceDetail": "the third key\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Nara turned the third key.”"
+  },
+  {
+    "source": "the tower",
+    "target": "탑",
+    "context": "없음\n맥락 메모 없음",
+    "sourceDetail": "the tower\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Nara returned to the tower with Elias.”"
+  },
+  {
+    "source": "tideglass",
+    "target": "타이드글래스",
+    "context": "없음\n수위를 측정하는 도구",
+    "sourceDetail": "tideglass\n설정·전문어 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Inside lay a tideglass, no larger than a plum”"
+  },
+  {
+    "source": "Tomas Reed",
+    "target": "토마스 리드",
+    "context": "없음\n나라의 아버지",
+    "sourceDetail": "Tomas Reed\n인물명 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “Tomas Reed”"
+  },
+  {
+    "source": "upper streets",
+    "target": "상부 거리",
+    "context": "없음\n침수되지 않은 높은 지대의 거리",
+    "sourceDetail": "upper streets\n지명·조직 모델 생성 · 적용 중\ngemma4:12b\n원문 근거: “climb to the upper streets.”"
+  }
+]

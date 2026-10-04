@@ -1,0 +1,4 @@
+
+> ian-review-frontend@1.0.0 lint
+> node node_modules/eslint/bin/eslint.js . --max-warnings=0
+

@@ -1,0 +1,39 @@
+{
+  "name": "ian-review-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node node_modules/vite/bin/vite.js",
+    "typecheck": "node node_modules/typescript/bin/tsc -b",
+    "build": "npm run typecheck && node scripts/build-portable.mjs",
+    "build:vite": "npm run typecheck && node node_modules/vite/bin/vite.js build",
+    "lint": "node node_modules/eslint/bin/eslint.js . --max-warnings=0",
+    "test": "node --require ./scripts/register-ts.cjs --test tests/*.test.cjs",
+    "preview": "node ../start.mjs --no-open",
+    "test:export": "node --require ./scripts/register-ts.cjs scripts/export-test-set.cjs",
+    "test:export:story": "node --require ./scripts/register-ts.cjs scripts/export-literary.cjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-router-dom": "7.18.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "eslint": "9.39.5",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-refresh": "0.4.26",
+    "fake-indexeddb": "6.2.5",
+    "globals": "16.5.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.1",
+    "vite": "8.3.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

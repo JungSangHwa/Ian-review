@@ -1,0 +1,10 @@
+
+> ian-review-frontend@1.0.0 build
+> npm run typecheck && node scripts/build-portable.mjs
+
+
+> ian-review-frontend@1.0.0 typecheck
+> node node_modules/typescript/bin/tsc -b
+
+Portable build complete: 38 modules, 1380 KB JS, 81 KB CSS
+Output: /mnt/data/ian-review-ready/frontend/dist

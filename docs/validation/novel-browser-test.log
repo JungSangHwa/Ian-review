@@ -1,0 +1,12 @@
+test_job_keeps_running_after_page_move_and_can_pause_resume (__main__.BrowserTests.test_job_keeps_running_after_page_move_and_can_pause_resume) ... ok
+test_mobile_switch_keyboard_and_download_paths (__main__.BrowserTests.test_mobile_switch_keyboard_and_download_paths) ... ok
+test_model_draft_navigation_guard_and_connection_state (__main__.BrowserTests.test_model_draft_navigation_guard_and_connection_state) ... ok
+test_project_create_rename_switch_delete_and_legacy_document_project (__main__.BrowserTests.test_project_create_rename_switch_delete_and_legacy_document_project) ... ok
+test_project_scoped_documents_terms_and_sidebar_counts (__main__.BrowserTests.test_project_scoped_documents_terms_and_sidebar_counts) ... ok
+test_sidebar_review_filter_recent_document_and_pin_persist (__main__.BrowserTests.test_sidebar_review_filter_recent_document_and_pin_persist) ... ok
+test_unsaved_manual_draft_survives_model_result (__main__.BrowserTests.test_unsaved_manual_draft_survives_model_result) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 12.165s
+
+OK

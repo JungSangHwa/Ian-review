@@ -1,0 +1,14 @@
+node_modules/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+.DS_Store
+.env
+.env.local
+.env.*
+!.env.example
+.playwright-cli/
+output/
+.openai/
+/dist/
+/CHECKSUMS.sha256
